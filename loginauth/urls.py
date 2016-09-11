@@ -20,5 +20,5 @@ from .views import (login_view, reqister_view, logout_view)
 urlpatterns = [
     url(r'^login/', login_view, name='login'),
     url(r'^logout/', logout_view, name='logout'),
-    url('', include('social.apps.django_app.urls', namespace='social')),
+
 ]

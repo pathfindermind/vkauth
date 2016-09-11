@@ -15,6 +15,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SOCIAL_AUTH_RAISE_EXCEPTIONS = True
+RAISE_EXCEPTIONS = True
+DEBUG = True
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -57,6 +61,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'vkauth.urls'
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -64,13 +70,12 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
-                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -133,15 +138,13 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-VK_APP_ID = '5624827'
-VKONTAKTE_APP_ID = VK_APP_ID
-VK_API_SECRET = 'ROdeFZfkqwt0R2gUD6ld'
-VKONTAKTE_APP_SECRET = VK_API_SECRET
-
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.vk.VKOAuth2',
-    'social.backends.facebook.FacebookOAuth2',
-    'social.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
 )
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '5624827'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'ROdeFZfkqwt0R2gUD6ld'
+
+LOGIN_URL = "/auth/login"

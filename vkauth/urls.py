@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('loginauth.urls')),
     url(r'^', include('vkauthapp.urls')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 ]
