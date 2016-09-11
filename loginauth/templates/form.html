@@ -42,8 +42,10 @@
         {% csrf_token %}
           {{ form|crispy }}
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+           <a href="{% url 'social:begin' "vk-oauth2" %}" class="vk sn-logo"><img src="{% static 'loginauth' %}/img/vk.png" width="50"
+   height="50" alt="VK"></a>
       </form>
-       <a href="{% url 'social:begin' "vk-oauth2" %}" class="vk sn-logo">VK</a>
+
 
     </div> <!-- /container -->
 
